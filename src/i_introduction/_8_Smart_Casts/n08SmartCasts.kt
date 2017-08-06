@@ -15,12 +15,11 @@ fun eval(e: Expr): Int =
             is Sum -> todoTask8(e)
         }
 
-fun todoTask8(expr: Expr): Nothing = TODO(
-    """
-        Task 8.
-        Complete the implementation of the 'eval' function above using smart casts and 'when' expression.
-        The 'JavaCode8.eval' method provides the similar functionality written in Java.
-    """,
-    documentation = doc8(),
-    references = { JavaCode8().eval(expr) })
+fun todoTask8(expr: Expr): Int = when (expr) {
+    is Num -> expr.value
+
+    is Sum -> todoTask8(expr.left) + todoTask8(expr.right)
+
+    else -> throw IllegalArgumentException("")
+}
 
